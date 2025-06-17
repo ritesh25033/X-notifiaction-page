@@ -3,8 +3,8 @@ const notificationsList = document.getElementById('list');
 const markAllButton = document.querySelector('.mark-all-button');
 const notificationsCounter = document.querySelector('.notifications-counter');
 
-// Track unread notifications (first 3 are unread initially)
-let unreadCount = 3;
+// Track unread notifications (first 4 are unread initially)
+let unreadCount = 4;
 const unreadNotifications = new Set([0, 1, 2, 3]); // Mark first 4 as unread
 
 // Function to render notifications
@@ -37,9 +37,12 @@ function renderNotifications() {
         
         listItem.innerHTML = notificationHTML;
         
-        // Add click event for private messages
+        // Fixed: Add click event for private messages with proper toggle
         if (notification.info.privateMessage) {
-            listItem.addEventListener('click', () => {
+            listItem.addEventListener('click', (e) => {
+                // Prevent navigation if clicking on links
+                if (e.target.tagName === 'A') return;
+                
                 const privateMessage = listItem.querySelector('.notification-text-private-message');
                 privateMessage.classList.toggle('show');
                 
@@ -50,7 +53,10 @@ function renderNotifications() {
             });
         } else {
             // Mark as read when clicked (for non-private messages)
-            listItem.addEventListener('click', () => {
+            listItem.addEventListener('click', (e) => {
+                // Prevent navigation if clicking on links
+                if (e.target.tagName === 'A') return;
+                
                 if (unreadNotifications.has(index)) {
                     markAsRead(index);
                 }
@@ -90,12 +96,12 @@ function updateCounter() {
 // Event listeners
 markAllButton.addEventListener('click', markAllAsRead);
 
-// Add hover effects for profile links and post links
+// Fixed: Proper navigation handling for profile and post links
 document.addEventListener('click', (e) => {
     if (e.target.matches('.profile-link') || e.target.matches('.notification-link-post')) {
         e.preventDefault();
-        // Navigate to # (placeholder)
-        window.location.hash = '#';
+        // Navigate to # (this will change the URL to include #)
+        window.location.href = '#';
     }
 });
 

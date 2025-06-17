@@ -86,16 +86,14 @@ h1 {
     background-color: hsl(210, 60%, 98%);
 }
 
-.notification-item.new-notification::after {
-    content: '';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+/* Fixed: Added proper notification dot styling */
+.notification-dot {
+    display: inline-block;
     width: 8px;
     height: 8px;
     background-color: hsl(1, 90%, 64%);
     border-radius: 50%;
+    margin-left: 0.5rem;
 }
 
 .notification-avatar {
