@@ -98,6 +98,12 @@ h1 {
     display: block;
 }
 
+/* Add this class to hide dots when read */
+.notification-dot.hidden {
+    display: none !important;
+}
+
+
 .notification-avatar {
     width: 45px;
     height: 45px;
