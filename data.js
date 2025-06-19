@@ -1,4 +1,4 @@
-const data = [
+data = [
   {
     img: "./assets/images/avatar-mark-webber.png",
     info: {

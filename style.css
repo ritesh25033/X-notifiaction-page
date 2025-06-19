@@ -154,9 +154,8 @@ h1 {
     font-size: 0.9rem;
 }
 
-/* FIXED: Private message visibility with proper display control */
 .notification-text-private-message {
-    display: none;
+    display: none !important;
     margin-top: 0.8rem;
     padding: 1rem;
     border: 1px solid hsl(205, 33%, 90%);
@@ -167,10 +166,10 @@ h1 {
     line-height: 1.5;
 }
 
-/* FIXED: Show class properly displays the private message */
 .notification-text-private-message.show {
     display: block !important;
 }
+
 
 .notification-picture {
     width: 45px;
