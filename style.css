@@ -156,7 +156,7 @@ h1 {
 
 /* FIXED: Private message visibility with proper display control */
 .notification-text-private-message {
-    display: none;
+/*     display: none; */
     margin-top: 0.8rem;
     padding: 1rem;
     border: 1px solid hsl(205, 33%, 90%);
