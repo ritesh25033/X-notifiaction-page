@@ -34,32 +34,27 @@ function renderNotifications() {
             notificationHTML += `<img src="${notification.info.picture}" alt="Chess" class="notification-picture">`;
         }
         
-        // FIXED: Add notification dot as separate element at the end
+        // Add notification dot as separate element at the end
         if (unreadNotifications.has(index)) {
             notificationHTML += `<span class="notification-dot"></span>`;
         }
         
         listItem.innerHTML = notificationHTML;
         
-        // FIXED: Improved click event handling for private messages
+        // FIXED: Simplified click event handling for private messages
         listItem.addEventListener('click', (e) => {
-            // Prevent navigation if clicking on links
-            if (e.target.tagName === 'A') {
+            // Handle link clicks separately
+            if (e.target.classList.contains('profile-link') || e.target.classList.contains('notification-link-post')) {
                 e.preventDefault();
                 window.location.href = '#';
                 return;
             }
             
-            // Handle private message toggle
+            // Handle private message toggle for any click on the notification
             if (notification.info.privateMessage) {
                 const privateMessage = listItem.querySelector('.notification-text-private-message');
                 if (privateMessage) {
-                    // Toggle visibility by adding/removing 'show' class
-                    if (privateMessage.classList.contains('show')) {
-                        privateMessage.classList.remove('show');
-                    } else {
-                        privateMessage.classList.add('show');
-                    }
+                    privateMessage.classList.toggle('show');
                 }
             }
             
@@ -92,11 +87,8 @@ function markAllAsRead() {
 // Function to update counter
 function updateCounter() {
     notificationsCounter.textContent = unreadCount;
-    if (unreadCount === 0) {
-        notificationsCounter.style.display = 'none';
-    } else {
-        notificationsCounter.style.display = 'inline-block';
-    }
+    // FIXED: Don't hide the counter, let it show 0
+    notificationsCounter.style.display = 'inline-block';
 }
 
 // Event listeners
